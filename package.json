@@ -1,0 +1,24 @@
+{
+  "name": "ng-context-menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Crystalnix/ng-context-menu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Crystalnix/ng-context-menu/issues"
+  },
+  "homepage": "https://github.com/Crystalnix/ng-context-menu",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-minify": "0.0.5"
+  }
+}
