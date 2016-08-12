@@ -10,8 +10,8 @@ angular.module('ng-context-menu', []).factory('ContextMenuService', function() {
       restrict: 'A',
       scope: {
         'callback': '&contextMenu',
-        'disabled': '&contextMenuDisabled',
-        'closeCallback': '&contextMenuClose'
+        'closeCallback': '&contextMenuClose',
+        'disabled': '=contextMenuDisabled'
       },
       link: function($scope, $element, $attrs) {
         var close, handleClickEvent, handleKeyUpEvent, open, opened;
@@ -48,21 +48,21 @@ angular.module('ng-context-menu', []).factory('ContextMenuService', function() {
           opened = false;
         };
         handleKeyUpEvent = function(event) {
-          if (!$scope.disabled() && opened && event.keyCode === 27) {
+          if (!$scope.disabled && opened && event.keyCode === 27) {
             $scope.$apply(function() {
               return close(ContextMenuService.menuElement);
             });
           }
         };
         handleClickEvent = function(event) {
-          if (!$scope.disabled() && opened && (event.button !== 2 || event.target !== ContextMenuService.element)) {
+          if (!$scope.disabled && opened && (event.button !== 2 || event.target !== ContextMenuService.element)) {
             $scope.$apply(function() {
               return close(ContextMenuService.menuElement);
             });
           }
         };
         $element.bind('contextmenu', function(event) {
-          if (!$scope.disabled()) {
+          if (!$scope.disabled) {
             if (ContextMenuService.menuElement !== null) {
               close(ContextMenuService.menuElement);
             }

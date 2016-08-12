@@ -19,8 +19,9 @@ angular.module 'ng-context-menu', []
         restrict: 'A'
         scope:
             'callback': '&contextMenu'
-            'disabled': '&contextMenuDisabled'
             'closeCallback': '&contextMenuClose'
+
+            'disabled': '=contextMenuDisabled'
 
         link: ($scope, $element, $attrs) ->
             opened = no
@@ -57,21 +58,21 @@ angular.module 'ng-context-menu', []
 
 
             handleKeyUpEvent = (event) ->
-                if not $scope.disabled() and opened and event.keyCode is 27
+                if not $scope.disabled and opened and event.keyCode is 27
                     $scope.$apply ->
                         close ContextMenuService.menuElement
                 return
 
 
             handleClickEvent = (event) ->
-                if not $scope.disabled() and opened and (event.button isnt 2 or event.target isnt ContextMenuService.element)
+                if not $scope.disabled and opened and (event.button isnt 2 or event.target isnt ContextMenuService.element)
                     $scope.$apply ->
                         close ContextMenuService.menuElement
                 return
 
 
             $element.bind 'contextmenu', (event) ->
-                unless $scope.disabled()
+                unless $scope.disabled
                     if ContextMenuService.menuElement isnt null
                         close ContextMenuService.menuElement
                     ContextMenuService.menuElement = angular.element(document.getElementById($attrs.target))
